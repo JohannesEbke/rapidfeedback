@@ -1,0 +1,37 @@
+<html>
+<head>
+<script type="text/javascript" src="static/jquery-2.1.1.min.js"></script>
+</head>
+<body>
+<div class='position'></div>
+<table>
+    <tr>
+        <td><button onclick='$.post("move/-1/1")'>*</button></td>
+        <td><button onclick='$.post("move/0/1")'>*</button></td>
+        <td><button onclick='$.post("move/1/1")'>*</button></td>
+    </tr>
+    <tr>
+        <td><button onclick='$.post("move/-1/0")'>*</button></td>
+        <td><button onclick='$.post("move/0/0")'>*</button></td>
+        <td><button onclick='$.post("move/1/0")'>*</button></td>
+    </tr>
+    <tr>
+        <td><button onclick='$.post("move/-1/-1")'>*</button></td>
+        <td><button onclick='$.post("move/0/-1")'>*</button></td>
+        <td><button onclick='$.post("move/1/-1")'>*</button></td>
+    </tr>
+</table>
+<button onclick='$.get("move_to/0/0")'>Zero</button>
+<button onclick='$.post("calibrate")'>Calibrate</button>
+<button onclick='$.post("fire_at/2/2")'>Fire at 2/2</button>
+<script>
+update_position = function () {
+    $.get("position", function (position) {
+        $(".position").html(position);
+        update_position();
+    })
+}
+update_position();
+</script>
+</body>
+</html>
