@@ -21,7 +21,7 @@ class MissileLauncher(object):
         def reset():
             self._phi = 0
             self._theta = 0
-        self.move_to(-self.PHI_RANGE, self.THETA_RANGE, reset)
+        self.move_to(-self.PHI_RANGE, -self.THETA_RANGE, reset)
 
     def move_to(self, phi, theta, action=None):
         self._target = (phi, theta)

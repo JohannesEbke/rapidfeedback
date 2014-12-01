@@ -4,7 +4,6 @@ from time import sleep
 from argparse import ArgumentParser
 
 import json
-import pyttsx
 import socket
 
 from tornado.web import Application, RequestHandler, StaticFileHandler, HTTPError
@@ -20,10 +19,9 @@ class IndexHandler(RequestHandler):
         self.render('index.html')
 
 class RocketHandler(RequestHandler):
-    def initialize(self, launcher, id, tts):
+    def initialize(self, launcher, id):
         self.launcher = launcher
         self.id = id
-        self.tts = tts
 
 class PositionHandler(RocketHandler):
     def get(self):
@@ -58,12 +56,9 @@ def run():
     else:
         m = MissileLauncher(MissileLauncherConnection(0))
 
-    e = pyttsx.init()
-
     config = {
         'launcher': m,
-        'id': args.id,
-        'tts': e
+        'id': args.id
     }
 
     application = Application([

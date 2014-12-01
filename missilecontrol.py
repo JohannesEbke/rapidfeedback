@@ -35,7 +35,7 @@ def run():
     if args.targets:
         for person_line in open(args.targets).readlines():
             name, site, x, y = person_line.split()
-            targets[name] = sites[site], map(float, (x, y))
+            targets[name] = sites[site], list(map(float, (x, y)))
 
     config = {
         'targets': targets
@@ -46,5 +46,5 @@ def run():
     ], debug=True)
 
     application.listen(6666)
-    print('Listening at http://localhost:6666')
+    print('Listening on http://localhost:6666')
     IOLoop.instance().start()
